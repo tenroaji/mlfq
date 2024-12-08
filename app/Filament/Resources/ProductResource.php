@@ -52,6 +52,7 @@ class ProductResource extends Resource
                 Tables\Columns\ImageColumn::make('image')
                     ->disk('public'),
                 Tables\Columns\TextColumn::make('price')
+                    ->label('Harga')
                     ->money('IDR')
                     ->formatStateUsing(fn ($state) => 'Rp. ' . number_format($state, 0, ',', '.'))
                     ->sortable(),
