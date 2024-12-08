@@ -105,6 +105,7 @@ class OrderResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('number')
+                    ->label('No. Hp')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('alamat')
                     ->searchable(),
