@@ -32,6 +32,8 @@ class OrderResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required(),
                 Forms\Components\TextInput::make('number')
+                    ->label('No. HP')
+                    ->numeric()
                     ->required(),
                 Forms\Components\TextInput::make('alamat')
                     ->required(),
