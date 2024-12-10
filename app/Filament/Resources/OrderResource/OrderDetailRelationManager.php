@@ -173,11 +173,16 @@ class OrderDetailRelationManager extends RelationManager
                     $total_time = OrderDetail::where('order_id', $id)->sum('total_time');
                     $total_price = OrderDetail::where('order_id', $id)->sum('sum_price');
                     $order = Order::find($id);
+                    $prioritas = false;
+                    if ($total_time >= 5){
+                        $prioritas = true;
+                    }
                     // Update Transaksi record
                     $order->update([
                         'time' => $total_time,
                         'sum_price'=>$total_price,
-                        'status' => 'designer'
+                        'status' => 'designer',
+                        'priority' => $prioritas
                     ]);
 
                     $livewire->dispatch('refresh');
@@ -205,10 +210,15 @@ class OrderDetailRelationManager extends RelationManager
                                 'status' => 'cutting'
                             ]);
                         }else{
+                            $prioritas = false;
+                            if ($total_time >= 5){
+                                $prioritas = true;
+                            }
                             $order->update([
                                 'time' => $total_time,
 //                                'antrian' => $end,
                                 'sum_price'=>$total_price,
+                                'priority' => $prioritas,
                                 'total_product'=>$total_product,
                                 'status' => 'designer'
                             ]);
@@ -231,10 +241,15 @@ class OrderDetailRelationManager extends RelationManager
                         $total_price = OrderDetail::where('order_id', $id)->sum('sum_price');
                         $order = Order::find($id);
                         // Update Transaksi record
+                        $prioritas = false;
+                        if ($total_time >= 5){
+                            $prioritas = true;
+                        }
                         $order->update([
                             'time' => $total_time,
                             'sum_price'=>$total_price,
-                            'total_product' => $total_product
+                            'total_product' => $total_product,
+                            'priority' => $prioritas
                         ]);
                         $livewire->dispatch('refresh');
                     }),

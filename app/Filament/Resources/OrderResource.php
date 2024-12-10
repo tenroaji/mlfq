@@ -44,8 +44,9 @@ class OrderResource extends Resource
                     ->label('Total Harga')
                     ->readOnly()
                     ->default(0),
-                Forms\Components\Toggle::make('priority')
-                    ->required(),
+                Forms\Components\Hidden::make('priority')
+                    ->default(false),
+//                    ->extraAttributes(['disabled' => d]),
                 Forms\Components\TextInput::make('time')
                     ->label('Lama Pengerjaan (Hari)')
                     ->readOnly()
